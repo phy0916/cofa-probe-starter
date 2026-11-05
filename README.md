@@ -1,5 +1,28 @@
 # Cofa Probe reusable starter
 
+## 3분 시작: 개발 기록과 6문항 학습자료
+
+공식 시험 사용 승인은 확인되지 않았습니다. 최신 지침이 허용하는 환경에서만 사용하세요.
+완성 기능/설계/오류 수정마다 **실제 테스트 → 로컬 체크포인트 → 현재 Codex의 근거 분석**을 수행합니다.
+
+```powershell
+python scripts/run_tests.py tests -q
+# 위 명령이 출력한 실제 JSON 파일명을 사용
+python scripts/checkpoint.py step-01 --evidence work/logs/ACTUAL_FILE.json
+# 선택: clone마다 한 번 설치. 기존 hook은 덮어쓰지 않음
+python scripts/install_hook.py
+```
+
+Codex에게 “방금 생성한 work/checkpoints/step-01/CODEX_REVIEW.md를 읽고 수행해줘”라고 요청하세요.
+AGENTS.md를 따르는 Codex는 이후 의미 있는 개발 단계가 끝날 때 이 작업을 자동으로 수행합니다.
+Python만 실행하면 사실 수집과 질문 초안까지 생성됩니다. AI 분석을 완료한 결과는 STUDY_PACK.md입니다.
+현재 Codex 외 외부 AI/API 호출은 없습니다.
+
+결과는 로컬 `work/checkpoints/단계/`에 남습니다. INDEX.md로 단계별 자료를 찾습니다.
+commit/tag, 별도 dirty diff·파일 지문, 실제 테스트 명령/종료 코드·출력,
+목적·설계·대안·모듈 흐름·미완료·AI/본인 기여, 기술 질문 6개와 근거 답안을 연결합니다.
+본인 판단·수치·실행 기록을 추정하지 않습니다. 자세한 설명은 [docs/checkpoints.md](docs/checkpoints.md).
+
 독립 제작한 범용 개발 연습 도구입니다. 공식 Cofa 제품이나 승인 자료가 아닙니다. 문제, 데이터, 도메인 구현, 정답은 포함하지 않습니다.
 
 ## 빠른 시작
@@ -20,6 +43,7 @@ python -m venv .venv
 macOS/Linux에서는 `.venv/bin/python`을 사용합니다. 가상환경 활성화는 필요하지 않습니다. 자동 패키지 업그레이드는 없습니다. pytest 버전 범위는 호환성 범위이며 잠금 파일은 아닙니다.
 
 ## 작업 흐름
+- 버전별 결정·AI 협업 기록과 마지막 6문항 점검: [1분 체크포인트 사용법](docs/checkpoints.md). `python scripts/checkpoint.py v01`로 로컬 초안을 생성하며 자동 커밋·push는 없습니다.
 - prompts/01-start.md로 요구사항을 정리하고 templates/requirements.csv를 work/requirements.csv에 복사합니다.
 - prompts/02-implement.md로 한 요구사항씩 구현합니다. 시험 문제와 답안은 로컬 work/에만 기록합니다.
 - prompts/03-debug.md와 실제 동작 검증으로 오류를 확인합니다.
