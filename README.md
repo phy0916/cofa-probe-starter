@@ -20,6 +20,7 @@ python -m venv .venv
 macOS/Linux에서는 `.venv/bin/python`을 사용합니다. 가상환경 활성화는 필요하지 않습니다. 자동 패키지 업그레이드는 없습니다. pytest 버전 범위는 호환성 범위이며 잠금 파일은 아닙니다.
 
 ## 작업 흐름
+- 버전별 결정·AI 협업 기록과 마지막 6문항 점검: [1분 체크포인트 사용법](docs/checkpoints.md). `python scripts/checkpoint.py v01`로 로컬 초안을 생성하며 자동 커밋·push는 없습니다.
 - prompts/01-start.md로 요구사항을 정리하고 templates/requirements.csv를 work/requirements.csv에 복사합니다.
 - prompts/02-implement.md로 한 요구사항씩 구현합니다. 시험 문제와 답안은 로컬 work/에만 기록합니다.
 - prompts/03-debug.md와 실제 동작 검증으로 오류를 확인합니다.
