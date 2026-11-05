@@ -19,6 +19,21 @@ python -m venv .venv
 
 macOS/Linux에서는 `.venv/bin/python`을 사용합니다. 가상환경 활성화는 필요하지 않습니다. 자동 패키지 업그레이드는 없습니다. pytest 버전 범위는 호환성 범위이며 잠금 파일은 아닙니다.
 
+
+## 시험 직전: Codex 자동 개발 기록 + 서술형 학습
+
+**새 기능:** Codex가 이 저장소의 `AGENTS.md` 지침을 실제로 읽은 작업 공간에서, 주요 기능 개발이 끝날 때마다 로컬 `work/study/`에 문서용 v0.1·v0.2 이력을 남기고 실제 구현과 검증 근거를 바탕으로 예상 서술형 6문항/답변 초안을 정리합니다.
+
+- 기록 항목: 개발 목적·설계 의도·대안·한계·모듈/데이터 흐름·실행한 테스트·AI와 사용자 역할·미완료 사항
+- 결과물: `DEVELOPMENT_HISTORY.md`, `MODULE_FLOW.md`, `TEST_EVIDENCE.md`, `AI_COLLABORATION.md`, `TECHNICAL_QA.md`, `FINAL_STUDY_GUIDE.md`
+- 확인할 수 없는 사실은 반드시 '추론' 또는 '사용자 확인 필요'로 표시합니다. 과제와 무관한 일반론을 모범답안이라고 주장하지 않습니다.
+- **Git 명령은 읽기까지 모두 금지**합니다. `.git` 접근, 자동 commit/push/tag, hook 설치도 없습니다. v0.1 등의 숫자는 학습 문서 내부에서만 쓰는 버전입니다.
+- 한계: Codex가 로컬 프로젝트의 AGENTS.md를 읽고 그 지침을 따라야 자동 문서화가 작동합니다. 일반 Python 스크립트나 Git 자체가 Codex 대화 또는 개발자의 판단을 자동 수집하는 것은 아닙니다. 문서가 생겼는지 `work/study/`를 확인하세요.
+
+**Windows PowerShell에서 사용:** 공식 안내가 허용한 경우, 이 저장소를 준비한 뒤 실제 과제 작업 폴더에 AGENTS.md의 지침을 적용합니다. 과제 폴더에 기존 AGENTS.md가 있으면 반드시 검토해 병합하고 덮어쓰지 마세요. Codex가 과제 작업 폴더에서 실행되고 AGENTS.md가 적용되는지 확인하세요. 시험용 입력·결과는 로컬에만 두세요. 종료 전에 `work/study/TECHNICAL_QA.md`의 답변을 실제 코드·테스트 로그와 대조하고 직접 설명해 보세요.
+
+**시험 전 주의:** 공식 제공 자료가 있는 경우 자체 CSV로 대체하지 않습니다. 실제 과제가 로컬 웹 서비스라면 페이지·백엔드·처리 상태·오류 및 결과 표시까지 요구사항대로 구현해야 하며, 알고리즘 CLI만으로 과제를 축소하지 않습니다. 최종 AI 사용 금지 구간에는 이 도구를 사용하지 않습니다.
+
 ## 작업 흐름
 - prompts/01-start.md로 요구사항을 정리하고 templates/requirements.csv를 work/requirements.csv에 복사합니다.
 - prompts/02-implement.md로 한 요구사항씩 구현합니다. 시험 문제와 답안은 로컬 work/에만 기록합니다.
