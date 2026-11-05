@@ -6,11 +6,14 @@ from pathlib import Path
 import subprocess
 import sys
 import uuid
+from evidence import private_work, state
 
 ROOT = Path(__file__).resolve().parents[1]
 
 def main(args=None):
     args = sys.argv[1:] if args is None else args
+    private_work(ROOT)
+    before = state(ROOT)
     folder = ROOT / "work" / "logs"
     folder.mkdir(parents=True, exist_ok=True)
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -29,7 +32,8 @@ def main(args=None):
         "started_utc": started,
         "finished_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "command": command, "python": sys.version.split()[0], "pytest": version,
-        "exit_code": result.returncode, "output_file": stem.name + ".log"
+        "exit_code": result.returncode, "output_file": stem.name + ".log",
+        "state_before": before, "state_after": state(ROOT)
     }, indent=2), encoding="utf-8")
     print(stem.with_suffix(".log").read_text(encoding="utf-8"))
     print("Local evidence:", stem.with_suffix(".json"))
